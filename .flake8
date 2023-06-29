@@ -1,0 +1,7 @@
+[flake8]
+# Ref. https://github.com/peterjc/flake8-black#configuration
+# Match Black's line length of 88, instead of flake8's of 79:
+max-line-length = 88
+extend-ignore =
+    # Ref. https://github.com/PyCQA/pycodestyle/issues/373
+    E203,

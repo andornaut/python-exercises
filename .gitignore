@@ -1,0 +1,3 @@
+# In case PIPENV_VENV_IN_PROJECT=1 env var is set
+.venv
+*.egg-info

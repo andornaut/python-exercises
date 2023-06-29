@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+exercises = {editable = true, path = "."}
+
+[dev-packages]
+# Use the same version as the "Black" VS Code extension
+black = "==23.3.0"
+# Use the same version as the "Flake8" VS Code extension
+flake8 = "==5.0.4"
+pytest = "*"
+
+[requires]
+python_version = "3.10"

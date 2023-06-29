@@ -1,0 +1,8 @@
+{
+  "python.analysis.inlayHints.pytestParameters": true,
+  "python.analysis.typeCheckingMode": "basic",
+  "python.formatting.provider": "black",
+  // Coverage breaks breakpoints
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false
+}
