@@ -18,13 +18,13 @@ def _line_to_person(line: list[str]) -> Person:
 
 def _read_csv(filepath: str) -> list[Person]:
     lines = _yield_lines(_absolute_path(filepath))
-    return list(map(_line_to_person, lines))
+    return [_line_to_person(line) for line in lines]
 
 
-def _shuffle_names(people: list[Person]) -> list[str]:
-    names = [person.name for person in people]
-    shuffle(names)
-    return names
+def _shuffle_people(people: list[Person]) -> list[Person]:
+    people = people.copy()
+    shuffle(people)
+    return people
 
 
 def _yield_lines(filepath: str) -> Generator[list[str], None, None]:
@@ -36,8 +36,8 @@ def _yield_lines(filepath: str) -> Generator[list[str], None, None]:
 
 
 def _assign_exchangers(
-    givers: list[str], receivers: list[str]
-) -> list[tuple[str, str]]:
+    givers: list[Person], receivers: list[Person]
+) -> list[tuple[Person, Person]]:
     exchangers = []
     have_received = set()
     for giver in givers:
@@ -54,8 +54,8 @@ def _assign_exchangers(
 
 def gift_exchange(filepath: str):
     people = _read_csv(filepath)
-    givers = _shuffle_names(people)
-    receivers = _shuffle_names(people)
+    givers = _shuffle_people(people)
+    receivers = _shuffle_people(people)
     exchangers = _assign_exchangers(givers, receivers)
 
     # There can only be 0 or 1 unassigned person, and they're both giver and receiver
@@ -63,11 +63,11 @@ def gift_exchange(filepath: str):
     if unassigned_person_or_empty:
         unassigned_person = unassigned_person_or_empty.pop()
         (giver, receiver) = exchangers.pop()
-        exchangers.extend([(giver, unassigned_person), (unassigned_person, receiver)])
+        exchangers.append((giver, unassigned_person))
+        exchangers.append((unassigned_person, receiver))
 
-    names_to_emails = {person.name: person.email for person in people}
     for giver, receiver in exchangers:
-        print(f"{names_to_emails[giver]} -> {names_to_emails[receiver]}")
+        print(f"{giver.email} -> {receiver.email}")
 
 
 if __name__ == "__main__":
