@@ -11,9 +11,9 @@ pytest = "*"
 
 [dev-packages]
 # Use the same version as the "Black" VS Code extension
-black = "==24.3.0"
+black = "==26.1.0"
 # Use the same version as the "Flake8" VS Code extension
-flake8 = "==5.0.4"
+flake8 = "==7.3.0"
 pytest = "*"
 
 [requires]
