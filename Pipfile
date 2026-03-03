@@ -5,6 +5,9 @@ name = "pypi"
 
 [packages]
 exercises = {editable = true, path = "."}
+black = "*"
+flake8 = "*"
+pytest = "*"
 
 [dev-packages]
 # Use the same version as the "Black" VS Code extension
